@@ -38,6 +38,7 @@ defmodule TwitterFeed.Parser do
       handle_id: parse_handle_id(is_retweet, user_id, tweet_html),
       user_id: parse_user_id(tweet_html),
       user_name: parse_user_name(tweet_html),
+      tweet_lng: parse_lang(tweet_html),
       display_name: parse_display_name(tweet_html),
       tweet_id: parse_tweet_id(tweet_html),
       timestamp: parse_timestamp(tweet_html),
@@ -121,6 +122,12 @@ defmodule TwitterFeed.Parser do
     |> String.trim()
   end
 
+  defp parse_lang(tweet_html) do
+    tweet_html
+    |> Floki.find(".lang")
+    |> Floki.text()
+  end
+
   defp parse_image(tweet_html) do
     tweet_html
     |> Floki.find(".AdaptiveMedia-photoContainer")
@@ -135,8 +142,8 @@ defmodule TwitterFeed.Parser do
   end
 
   defp truncate(text) do
-    if (String.length(text)) > 30 do
-      String.slice(text, 0, 30) <> "..."
+    if (String.length(text)) > 160 do
+      String.slice(text, 0, 160) <> "..."
     else
       text
     end
