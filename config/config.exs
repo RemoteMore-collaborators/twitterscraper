@@ -33,6 +33,11 @@ config :elixir_google_spreadsheets, :client,
   max_interval: :timer.minutes(1),
   interval: 100
 
+config :twitter_feed, TwitterFeed.Scheduler,
+jobs: [
+  {"10 22 * * *", fn -> SpreadSheet.save_to_spreadsheet("CandyCrushSaga") end},
+]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

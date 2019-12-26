@@ -48,6 +48,8 @@ defmodule TwitterFeed.MixProject do
       {:floki, "~> 0.23.0"},
       {:poison, "~> 3.1"},
       {:elixir_google_spreadsheets, "~> 0.1.15"},
+      {:quantum, "~> 2.3"},
+      {:timex, "~> 3.0"},
 
       {:excoveralls, "~> 0.10", only: :test},
       {:httpoison, "~> 1.0"},
