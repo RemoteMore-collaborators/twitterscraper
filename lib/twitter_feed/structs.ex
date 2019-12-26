@@ -16,6 +16,7 @@ defmodule TwitterFeed.Tweet do
     handle_id: "",
     tweet_id: "",
     user_id: "",
+    tweet_lng: "",
     user_name: "",
     display_name: "",
     timestamp: "",
