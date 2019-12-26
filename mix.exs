@@ -22,7 +22,7 @@ defmodule TwitterFeed.MixProject do
   def application do
     [
       mod: {TwitterFeed.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :elixir_google_spreadsheets]
     ]
   end
 
@@ -47,6 +47,7 @@ defmodule TwitterFeed.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:floki, "~> 0.23.0"},
       {:poison, "~> 3.1"},
+      {:elixir_google_spreadsheets, "~> 0.1.15"},
 
       {:excoveralls, "~> 0.10", only: :test},
       {:httpoison, "~> 1.0"},
