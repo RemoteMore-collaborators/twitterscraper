@@ -7,8 +7,6 @@ defmodule TwitterFeed.Parser do
       |> Floki.find(".tweet")
 
     %Feed {
-      last_tweet_retrieved: html |> parse_html_min_position(),
-      more_tweets_exist: html |> parse_html_has_more_items,
       tweets: Enum.map(tweet_html, fn(x) -> parse_tweet(x) end)
     }
   end
@@ -24,8 +22,6 @@ defmodule TwitterFeed.Parser do
       |> Floki.find(".tweet")
 
     %Feed {
-      last_tweet_retrieved: parsed_json["min_position"] |> parse_json_min_position(),
-      more_tweets_exist: parsed_json["has_more_items"],
       tweets: Enum.map(tweet_html, fn(x) -> parse_tweet(x) end)
     }
   end
@@ -44,7 +40,6 @@ defmodule TwitterFeed.Parser do
       timestamp: parse_timestamp(tweet_html),
       text_summary: parse_text(tweet_html) |> truncate(),
       image_url: parse_image(tweet_html),
-      retweet: parse_is_retweet(tweet_html)
     }
   end
 
@@ -89,7 +84,6 @@ defmodule TwitterFeed.Parser do
     tweet_html
     |> Floki.attribute("data-user-id")
     |> hd()
-    |> String.to_integer()
   end
 
   defp parse_user_name(tweet_html) do
@@ -102,7 +96,6 @@ defmodule TwitterFeed.Parser do
     tweet_html
     |> Floki.attribute("data-tweet-id")
     |> hd()
-    |> String.to_integer()
   end
 
   defp parse_timestamp(tweet_html) do
@@ -124,7 +117,7 @@ defmodule TwitterFeed.Parser do
 
   defp parse_lang(tweet_html) do
     tweet_html
-    |> Floki.find(".lang")
+    |> Floki.find("lang")
     |> Floki.text()
   end
 
@@ -158,6 +151,5 @@ defmodule TwitterFeed.Parser do
     |> Floki.find(".js-retweet-text > a")
     |> Floki.attribute("data-user-id")
     |> hd()
-    |> String.to_integer()
   end
 end

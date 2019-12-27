@@ -21,8 +21,7 @@ defmodule TwitterFeed.Tweet do
     display_name: "",
     timestamp: "",
     text_summary: "",
-    image_url: "",
-    retweet: false
+    image_url: ""
   ]
 end
 
@@ -39,8 +38,8 @@ defmodule TwitterFeed.Feed do
 
   """
   defstruct [
-    last_tweet_retrieved: 0,
-    more_tweets_exist: false,
+    # last_tweet_retrieved: 0,
+    # more_tweets_exist: false,
     tweets: []
   ]
 end

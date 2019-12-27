@@ -24,11 +24,11 @@ defmodule SpreadSheet do
     {:ok, clean}
   end
 
-  def save_to_spreadsheet(handle, start_after_tweet \\ 0) do
+  def save_to_spreadsheet(handle, _start_after_tweet \\ 0) do
     {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1XvvLVKqmFEdipxB5uX8Sp0tIAzEevI_F9xeZ1iq1Y1s", list_name: "candy")
 
     fetch_tweets =
-      TwitterFeed.get_tweets(handle, start_after_tweet)
+      TwitterFeed.get_tweets(handle)
 
     save_to_candy =
     fetch_tweets.tweets
