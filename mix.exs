@@ -50,6 +50,7 @@ defmodule TwitterFeed.MixProject do
       {:elixir_google_spreadsheets, "~> 0.1.15"},
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
+      {:distillery, "~> 2.1"},
 
       {:excoveralls, "~> 0.10", only: :test},
       {:httpoison, "~> 1.0"},
