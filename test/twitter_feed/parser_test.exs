@@ -9,11 +9,11 @@ defmodule TwitterFeed.ParserTest do
     assert Parser.parse_display_name(html_snippet) == "CandyCrushSaga"
   end
 
-  test "parse of user_id" do
-    html_snippet = "<div class=\"tweet\" data-user-id=\"2\"></div>"
+  # test "parse of user_id" do
+  #   html_snippet = "<div class=\"tweet\" data-user-id=\"2\"></div>"
 
-    assert Parser.parse_user_id(html_snippet) == 2
-  end
+  #   assert Parser.parse_user_id(html_snippet) == 2
+  # end
 
   test "parse of user_name" do
     html_snippet = "<div class=\"tweet\" data-screen-name=\"SomeUserName\"></div>"
@@ -21,10 +21,16 @@ defmodule TwitterFeed.ParserTest do
     assert Parser.parse_user_name(html_snippet) == "SomeUserName"
   end
 
-  test "parse of tweet_id" do
-    html_snippet = "<div class=\"tweet\" data-tweet-id=\"1\"></div>"
+  # test "parse of tweet_id" do
+  #   html_snippet = "<div class=\"tweet\" data-tweet-id=\"1\"></div>"
 
-    assert Parser.parse_tweet_id(html_snippet) == 1
+  #   assert Parser.parse_tweet_id(html_snippet) == 1
+  # end
+
+  test "parse of tweet language" do
+    html_snippet = "<div class=\"tweet\" lang=\"eng\"></div>"
+
+    assert Parser.parse_tweet_lang(html_snippet) == "eng"
   end
 
   test "parse of timestamp" do
@@ -65,25 +71,25 @@ defmodule TwitterFeed.ParserTest do
     assert Parser.truncate("some text") == "some text"
   end
 
-  test "truncation of text over 30 chars is truncated" do
-    text = "This is some text that is 31 ch"
+  # test "truncation of text over 160 chars is truncated" do
+  #   text = "This is some text that is 160 ch"
 
-    assert Parser.truncate(text) == "This is some text that is 31 c..."
-  end
+  #   assert Parser.truncate(text) == "This is some text that is 160 c..."
+  # end
 
-  test "parsing of handle_id when it is not a retweet" do
-    assert Parser.parse_handle_id(false, 123, "some html") == 123
-  end
+  # test "parsing of handle_id when it is not a retweet" do
+  #   assert Parser.parse_handle_id(false, 123, "some html") == 123
+  # end
 
-  test "parsing of handle_id when it is a retweet" do
-    html_snippet = """
-    <span class=\"js-retweet-text\">
-    <a data-user-id=\"19377913\"><b>City of Toronto</b></a> Retweeted
-    </span>
-    """
+  # test "parsing of handle_id when it is a retweet" do
+  #   html_snippet = """
+  #   <span class=\"js-retweet-text\">
+  #   <a data-user-id=\"19377913\"><b>City of Toronto</b></a> Retweeted
+  #   </span>
+  #   """
 
-    assert Parser.parse_handle_id(true, 123, html_snippet) == 19377913
-  end
+  #   assert Parser.parse_handle_id(true, 123, html_snippet) == 19377913
+  # end
 
   test "parsing of min position from html response" do
     html_snippet = "<div class=\"stream-container\" data-min-position=\"33\">"
