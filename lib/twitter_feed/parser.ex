@@ -34,7 +34,7 @@ defmodule TwitterFeed.Parser do
       handle_id: parse_handle_id(is_retweet, user_id, tweet_html),
       user_id: parse_user_id(tweet_html),
       user_name: parse_user_name(tweet_html),
-      tweet_lng: parse_lang(tweet_html),
+      tweet_lng: parse_tweet_lang(tweet_html),
       display_name: parse_display_name(tweet_html),
       tweet_id: parse_tweet_id(tweet_html),
       timestamp: parse_timestamp(tweet_html),
@@ -115,9 +115,10 @@ defmodule TwitterFeed.Parser do
     |> String.trim()
   end
 
-  defp parse_lang(tweet_html) do
+  defp parse_tweet_lang(tweet_html) do
     tweet_html
-    |> Floki.find("lang")
+    |> Floki.find(".tweet-text")
+    |> Floki.attribute("lang")
     |> Floki.text()
   end
 
