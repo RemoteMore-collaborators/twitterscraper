@@ -11,6 +11,7 @@ defmodule TwitterFeed do
   ## Parameters
 
     - handle: a string representing the twitter handle to retrieve tweets from.
+    - tweet_id: an optional integer parameter
     - start_after_tweet: an optional integer parameter that defaults to 0.
         When 0 will retrieve tweets starting from the most
         recently posted tweet.  When populated with a
@@ -28,6 +29,12 @@ defmodule TwitterFeed do
       {:ok, %TwitterFeed.Feed{last_tweet_retrieved: 966417486722863104,
                             more_tweets_exist: true,
                             tweets: [...]}
+
+    To scrape handle status and tweet comments you will need to pass
+    tweet_id to the scapper:
+
+    TwitterFeed.get_tweets("CandyCrushSaga", 1207617229082288128)
+      {:ok, %TwitterFeed.Feed{tweet: [...]}}
 
     To then get the 2nd page of results use the
     start_after_tweet value from the 1st request:
