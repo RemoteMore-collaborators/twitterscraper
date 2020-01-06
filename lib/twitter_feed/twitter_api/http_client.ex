@@ -8,6 +8,11 @@ defmodule TwitterFeed.TwitterApi.HttpClient do
     |> HTTPoison.get(get_headers())
   end
 
+  def get_status_page(handle, tweet_id) do
+    UrlBuilder.build_html_status_url(handle, tweet_id)
+    |> HTTPoison.get(get_headers())
+  end
+
   def get_tweets(handle, last_tweet_retrieved) do
     UrlBuilder.build_json_url(handle, last_tweet_retrieved)
     |> HTTPoison.get(get_headers())
