@@ -14,6 +14,10 @@ defmodule TwitterFeed.TwitterApi.UrlBuilder do
     "#{@base_url}/#{handle}"
   end
 
+  def build_html_status_url(handle, tweet_id) do
+    "#{@base_url}/#{handle}/status/#{tweet_id}"
+  end
+
   def build_json_url(handle, from_position) do
     @base_url <> @path_seperator <>
     @profile_path <> @path_seperator <>
