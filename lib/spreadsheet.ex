@@ -37,7 +37,7 @@ defmodule SpreadSheet do
   end
 
   def save_to_spreadsheet(handle) do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1XvvLVKqmFEdipxB5uX8Sp0tIAzEevI_F9xeZ1iq1Y1s", list_name: "TweetStatusTest")
+    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1XvvLVKqmFEdipxB5uX8Sp0tIAzEevI_F9xeZ1iq1Y1s", list_name: "TweetStatusFinal")
 
     fetch_t =
       TwitterFeed.get_tweets(handle)
