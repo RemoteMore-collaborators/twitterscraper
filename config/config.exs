@@ -36,7 +36,7 @@ config :elixir_google_spreadsheets, :client,
 config :twitter_feed, TwitterFeed.Scheduler,
 timezone: "Europe/London",
 jobs: [
-  {"8-22", fn -> SpreadSheet.save_to_spreadsheet("CandyCrushSaga") end},
+  {"8-22/10", fn -> SpreadSheet.save_to_spreadsheet("CandyCrushSaga") end},
 ]
 
 # Import environment specific config. This must remain at the bottom
