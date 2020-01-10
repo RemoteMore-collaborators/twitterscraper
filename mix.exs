@@ -22,7 +22,7 @@ defmodule TwitterFeed.MixProject do
   def application do
     [
       mod: {TwitterFeed.Application, []},
-      extra_applications: [:logger, :runtime_tools, :elixir_google_spreadsheets]
+      extra_applications: [:logger, :runtime_tools, :elixir_google_spreadsheets, :extwitter]
     ]
   end
 
@@ -51,6 +51,8 @@ defmodule TwitterFeed.MixProject do
       {:quantum, "~> 2.3"},
       {:timex, "~> 3.0"},
       {:distillery, "~> 2.1"},
+      {:oauther, "~> 1.1"},
+      {:extwitter, "~> 0.8"},
 
       {:excoveralls, "~> 0.10", only: :test},
       {:httpoison, "~> 1.0"},
