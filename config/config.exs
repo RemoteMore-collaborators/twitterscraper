@@ -33,10 +33,17 @@ config :elixir_google_spreadsheets, :client,
   max_interval: :timer.minutes(1),
   interval: 100
 
+config :extwitter, :oauth, [
+  consumer_key: System.get_env("CONSUMER_KEY"),
+  consumer_secret: System.get_env("CONSUMER_SECRET"),
+  access_token: System.get_env("ACCESS_TOKEN"),
+  access_token_secret: System.get_env("ACCESS_TOKEN_SECRET")
+ ]
+
 config :twitter_feed, TwitterFeed.Scheduler,
 timezone: "Europe/London",
 jobs: [
-  {"8-22/10", fn -> SpreadSheet.save_to_spreadsheet("CandyCrushSaga") end},
+  {"0 8-22/10", fn -> SpreadSheet.save_to_spreadsheet("CandyCrushSaga") end},
 ]
 
 # Import environment specific config. This must remain at the bottom
