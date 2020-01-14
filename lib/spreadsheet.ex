@@ -36,15 +36,27 @@ defmodule SpreadSheet do
     {:ok, get_tweet_id}
   end
 
+  def testing_scrape(handle) do
+    scrape =
+      ExTwitter.search(handle, [count: 15])
+        |> Enum.map(fn(tweet) ->
+          String.split(tweet.text, "  ", trim: true)
+        end)
+        |> Enum.join("\n-----\n")
+        |> IO.puts
+
+    {:ok, scrape}
+  end
+
   def save_to_spreadsheet(handle) do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1XvvLVKqmFEdipxB5uX8Sp0tIAzEevI_F9xeZ1iq1Y1s", list_name: "StatusTweet")
+    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1XvvLVKqmFEdipxB5uX8Sp0tIAzEevI_F9xeZ1iq1Y1s", list_name: "TwitterStatusScrape")
 
     save_to_candy =
       ExTwitter.search(handle, [count: 100])
         |> Enum.with_index(1)
         |> Enum.each(fn {tweet, index} ->
           GSS.Spreadsheet.append_row(pid, index,
-            [tweet.text]
+            String.split(tweet.text, "  ", trim: true)
           )
         end)
 
